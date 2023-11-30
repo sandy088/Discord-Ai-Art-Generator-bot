@@ -10,7 +10,7 @@ const generateArt = async (prompt: string) => {
         prompt: prompt,
     }
     try {
-        let artData: string = "Some error occurred while generating art"
+        let artData: [string] = ["Some error occurred while generating art"]
 
         await axios.post(`${process.env.AI_ART_BASE_URL}/api/v1/generate`, data, {
             headers: {
@@ -20,7 +20,7 @@ const generateArt = async (prompt: string) => {
             },
             // Add other options like data, params, etc. if needed
         }).then((response)=>{
-            artData = response.data.output[0];
+            artData = response.data.output;// -> I am here right noiw
         }).catch((error)=>{
             console.log(error)
         });
